@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 import './app.css';
+import VideoList from './components/VideoList/video_list';
 
 function App() {
   const [videos, setVideos] = useState([]);
@@ -18,10 +19,13 @@ function App() {
       requestOptions,
     )
       .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((result) => {
+        console.log(result);
+        setVideos(result.items);
+      })
       .catch((error) => console.log('error', error));
   }, []);
-  return <h1>hello :)</h1>;
+  return <VideoList videos={videos} />;
 }
 
 export default App;
