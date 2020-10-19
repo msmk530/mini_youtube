@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import * as config from './config';
 
-import './app.css';
+import styles from './app.module.css';
+import Header from './components/Header/header';
 import VideoList from './components/VideoList/video_list';
 
 function App() {
@@ -26,7 +27,12 @@ function App() {
       })
       .catch((error) => console.log('error', error));
   }, []);
-  return <VideoList videos={videos} />;
+  return (
+    <div className={styles.app}>
+      <Header name={'Youtube'} />
+      <VideoList videos={videos} />
+    </div>
+  );
 }
 
 export default App;
