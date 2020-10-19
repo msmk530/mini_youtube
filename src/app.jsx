@@ -8,6 +8,24 @@ import Header from './components/Header/header';
 import VideoList from './components/VideoList/video_list';
 
 function App() {
+  const search = (query) => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&type=video&key=${config.YOUTUBE_API_KEY}`,
+      requestOptions,
+    )
+      .then((response) => response.json())
+      .then((result) =>
+        result.items.map((item) => ({ ...item, id: item.id.videoId })),
+      )
+      .then((items) => setVideos(items))
+      .catch((error) => console.log('error', error));
+  };
+
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -21,15 +39,12 @@ function App() {
       requestOptions,
     )
       .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        setVideos(result.items);
-      })
+      .then((result) => setVideos(result.items))
       .catch((error) => console.log('error', error));
   }, []);
   return (
     <div className={styles.app}>
-      <Header name={'Youtube'} />
+      <Header name={'Youtube'} onSearch={search} />
       <VideoList videos={videos} />
     </div>
   );
