@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './styles/video_item.module.css';
 
-const VideoItem = ({ video, video: { snippet }, onSelectVideo }) => {
+const VideoItem = ({ video, video: { snippet }, onSelectVideo, display }) => {
+  const displayType = display === 'list' ? styles.list : styles.grid;
+
   return (
-    <div className={styles.container} onClick={() => onSelectVideo(video)}>
+    <div
+      className={`${styles.container} ${displayType}`}
+      onClick={() => onSelectVideo(video)}
+    >
       <div className={styles.item}>
         <img
           className={styles.thumbnail}

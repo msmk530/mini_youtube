@@ -1,3 +1,15 @@
 .app {
   max-width: 80rem;
 }
+
+.content {
+  display: flex;
+}
+
+.selected {
+  flex: 1 1 70%;
+}
+
+.videoList {
+  flex: 1 1 30%;
+}
