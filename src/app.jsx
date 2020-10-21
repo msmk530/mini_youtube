@@ -4,15 +4,21 @@ import { useState } from 'react';
 
 import styles from './app.module.css';
 import Header from './components/Header/header';
+import SelectedVideo from './components/SelectedVideo/selected_video';
 import VideoList from './components/VideoList/video_list';
 
 function App({ youtube }) {
   const [videos, setVideos] = useState([]);
+  const [selected, setSelected] = useState(null);
 
   const search = (query) => {
     youtube
       .search(query) //
       .then((videos) => setVideos(videos));
+  };
+
+  const selectVideo = (video) => {
+    setSelected(video);
   };
 
   useEffect(() => {
@@ -23,8 +29,9 @@ function App({ youtube }) {
 
   return (
     <div className={styles.app}>
-      <Header name={'Youtube'} onSearch={search} />
-      <VideoList videos={videos} />
+      <Header onSearch={search} />
+      {selected && <SelectedVideo video={selected} />}
+      <VideoList videos={videos} onSelectVideo={selectVideo} />
     </div>
   );
 }
