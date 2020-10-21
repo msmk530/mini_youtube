@@ -3,7 +3,7 @@
 
 # develop setting
 /.vscode
-/src/config.js
+.env
 
 # dependencies
 /node_modules
