@@ -13,6 +13,9 @@ const SelectedVideo = ({ video }) => (
       frameborder='0'
       allowfullscreen
     ></iframe>
+    <h2>{video.snippet.title}</h2>
+    <h2>{video.snippet.channelTitle}</h2>
+    <pre className={styles.videoDescription}>{video.snippet.description}</pre>
   </section>
 );
 

@@ -1,0 +1,7 @@
+.selected {
+  padding: 0.2em;
+}
+
+.videoDescription {
+  white-space: pre-wrap;
+}
