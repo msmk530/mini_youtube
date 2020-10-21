@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -11,14 +12,17 @@ function App({ youtube }) {
   const [videos, setVideos] = useState([]);
   const [selected, setSelected] = useState(null);
 
-  const search = (query) => {
-    youtube
-      .search(query) //
-      .then((videos) => {
-        setVideos(videos);
-        setSelected(null);
-      });
-  };
+  const search = useCallback(
+    (query) => {
+      youtube
+        .search(query) //
+        .then((videos) => {
+          setVideos(videos);
+          setSelected(null);
+        });
+    },
+    [youtube],
+  );
 
   const selectVideo = (video) => {
     setSelected(video);

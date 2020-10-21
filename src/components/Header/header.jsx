@@ -1,8 +1,9 @@
 import React from 'react';
+import { memo } from 'react';
 import { useRef } from 'react';
 import styles from './styles/header.module.css';
 
-const Header = ({ onSearch }) => {
+const Header = memo(({ onSearch }) => {
   const inputRef = useRef();
   const handleSearch = () => {
     const value = inputRef.current.value;
@@ -41,6 +42,6 @@ const Header = ({ onSearch }) => {
       </button>
     </header>
   );
-};
+});
 
 export default Header;
