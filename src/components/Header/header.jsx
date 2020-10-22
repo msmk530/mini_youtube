@@ -14,6 +14,10 @@ const Header = memo(({ onSearch }) => {
     handleSearch();
   };
 
+  const goHome = () => {
+    window.location.reload();
+  };
+
   const onKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleSearch();
@@ -22,7 +26,7 @@ const Header = memo(({ onSearch }) => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.symbol}>
+      <div className={styles.symbol} onClick={goHome}>
         <img className={styles.logo} src='/images/logo.png' alt='header logo' />
         <h1 className={styles.title}>Subtube</h1>
       </div>
